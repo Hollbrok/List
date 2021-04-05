@@ -4,6 +4,6 @@ using namespace std;
 
 int main()
 {
-    //cout << "Hello world!" << endl;
+    CONSTRUCT(list_1);
     return 0;
 }
