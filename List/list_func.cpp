@@ -127,3 +127,65 @@ list_element* list::set_element_to_start(data_type number)
 
 	return tmp;
 }
+
+list_element* list::set_element_prev_to_x(list_element* x, data_type number)
+{
+	assert(this && "You passed nullptr list to set_element_prev_to_x");
+	assert(x && "You passed nullptr x element");
+
+	list_element* tmp = (list_element*) calloc(1, sizeof(list_element));
+
+	if(is_start(x))
+	{
+		set_start(tmp);
+
+		x->set_prev(tmp);
+		tmp->set_next(x);
+
+		tmp->set_data(number);
+	}
+	else
+	{
+		(x->get_prev())->set_next(tmp);
+
+		tmp->set_next(x);
+		tmp->set_prev(x->get_prev());
+		tmp->set_data(number);
+	}
+
+	cur_size_++;
+
+	return tmp;
+}
+
+const void list::print_list(bool need_graphviz_dump) const
+{
+	if(need_graphviz_dump)
+		printf("No such feature has been added yet\n");
+
+	size_t counter = 0;
+
+    const list_element* tmp = get_start();
+
+    printf("\n\n\n\n");
+
+
+    if(tmp == nullptr)
+    {
+        printf("List if empty");
+        return;
+    }
+
+    printf("START_ELEMENT: [%d]: [%lg] -> ", ++counter, tmp->get_data());
+    tmp = tmp->get_next();
+
+	for(tmp; !is_end(tmp); tmp = tmp->get_next())
+		printf("[%d]: [%lg] -> ", ++counter, tmp->get_data());
+
+    printf("END_ELEMENT: [%d]: [%lg].\n", ++counter, tmp->get_data());
+    printf("SIZE: [%d]\nNAME: [%s]\nERROR_STATE: [%d]", cur_size_, name_, error_state_);
+
+
+    printf("\n\n\n\n");
+	return;
+}

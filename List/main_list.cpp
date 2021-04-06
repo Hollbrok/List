@@ -12,8 +12,13 @@ int main()
     printf("next to start =[%lg]\n", list_1[list_1.get_end()] );
 
     list_1[list_1.get_end()] = 20;
-    printf("new next to start =[%lg]\n", list_1[list_1.get_end()] );
+    printf("new end =[%lg]\n", list_1[list_1.get_end()] );
 
+    list_1.set_element_prev_to_x(list_1.get_start(), 55);
+    printf("start = [%lg]\n", (list_1.get_start())->get_data() );
+
+    // rename to dump
+    list_1.print_list();
 
     return 0;
 }
