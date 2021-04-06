@@ -31,12 +31,16 @@ public:
 
     data_type& non_const_get_data() {assert(this && "You passed nullptr to get_data()"); return data_;};
 
+    list_element* get_next() {assert(this && "nullptr list_element in get_next()"); return next_;};
+    list_element* get_prev() {assert(this && "nullptr list_element in get_prev()"); return prev_;};
+
+
 //! GETTERS
 
-	data_type get_data() const {assert(this && "You passed nullptr to get_data()"); return data_;};
+	const data_type& get_data()     const {assert(this && "You passed nullptr to get_data()"); return data_;};
 
-	list_element* get_next() {assert(this && "nullptr list_element in get_next()"); return next_;};
-	list_element* get_prev() {assert(this && "nullptr list_element in get_prev()"); return prev_;};
+	const list_element* get_next()  const {assert(this && "nullptr list_element in get_next()"); return next_;};
+	const list_element* get_prev()  const {assert(this && "nullptr list_element in get_prev()"); return prev_;};
 
 };
 
@@ -75,16 +79,19 @@ public:
 
 //! GETTERS
 
-	size_t get_cur_size() const {return cur_size_;};
-	size_t get_error_state() const {return error_state_;};
+	const size_t get_cur_size()     const {return cur_size_;};
+	const size_t get_error_state()  const {return error_state_;};
 
-	const data_type get_data_from_element(list_element* element) const {assert(this && "You passed nullptr list");  return element->get_data();};
-	const data_type& operator[] (list_element* element) const {return get_data_from_element(element);};
+	const data_type& get_data_from_element (list_element* element)
+                                    const {assert(this && "You passed nullptr list");  return element->get_data();};
 
-	const char* get_name() const {return name_;};
+	const data_type& operator[](list_element* element)
+                                    const {return get_data_from_element(element);};
+
+	const char* get_name()          const {return name_;};
 
 	const list_element* get_start() const {return start_;};
-	const list_element* get_end() const {return end_;};
+	const list_element* get_end()   const {return end_;};
 
 };
 
