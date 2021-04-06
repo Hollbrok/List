@@ -85,6 +85,7 @@ public:
 
 	const void print_list(bool need_graphviz_dump = false)
 									const;
+    const void graphviz_dump(char* dumpfile_name) const;
 
 	const size_t get_cur_size()     const {return cur_size_;};
 	const size_t get_error_state()  const {return error_state_;};
@@ -107,8 +108,7 @@ public:
 
 };
 
-
-
+void graphviz_dump(char* dumpfile_name);
 
 #define CONSTRUCT(name)	\
 	list name(#name);
