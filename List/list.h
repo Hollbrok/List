@@ -28,9 +28,13 @@ public:
 	void set_prev(list_element* new_prev) {prev_ = new_prev;};
 
 
+
+    data_type& non_const_get_data() {assert(this && "You passed nullptr to get_data()"); return data_;};
+
 //! GETTERS
 
 	data_type get_data() const {assert(this && "You passed nullptr to get_data()"); return data_;};
+
 	list_element* get_next() {assert(this && "nullptr list_element in get_next()"); return next_;};
 	list_element* get_prev() {assert(this && "nullptr list_element in get_prev()"); return prev_;};
 
@@ -57,18 +61,30 @@ public:
 
 //! SETTERS
 
-	list_element* set_element_from_end(data_type number);
-	list_element* set_element_from_start(data_type number);
 	void set_start(list_element* start) {start_ = start;};
 	void set_end(list_element* end) {end_ = end;};
+
+	list_element* set_element_from_end(data_type number);
+	list_element* set_element_to_start(data_type number);
+
+	data_type& non_const_get_data_from_element(list_element* element) {assert(this && "You passed nullptr list");  return element->non_const_get_data();};
+	data_type& operator[] (list_element* element) {return non_const_get_data_from_element(element);};
+
+    list_element* get_start() {return start_;};
+	list_element* get_end() {return end_;};
 
 //! GETTERS
 
 	size_t get_cur_size() const {return cur_size_;};
 	size_t get_error_state() const {return error_state_;};
+
+	const data_type get_data_from_element(list_element* element) const {assert(this && "You passed nullptr list");  return element->get_data();};
+	const data_type& operator[] (list_element* element) const {return get_data_from_element(element);};
+
 	const char* get_name() const {return name_;};
-	list_element* get_start() {return start_;};
-	list_element* get_end() {return end_;};
+
+	const list_element* get_start() const {return start_;};
+	const list_element* get_end() const {return end_;};
 
 };
 

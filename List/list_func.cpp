@@ -96,7 +96,7 @@ list_element* list::set_element_from_end(data_type number)
 	return tmp;
 }
 
-list_element* list::set_element_from_start(data_type number)
+list_element* list::set_element_to_start(data_type number)
 {
 	assert(!isnan(number) && "number is nan");
 	assert(this && "You passed nullptr to set_element_from_start");
